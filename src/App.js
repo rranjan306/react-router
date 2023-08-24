@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import About from "./components/About";
+import Header from "./components/Header";
+import OrderSummary from "./components/OrderSummary";
+import Error from './components/Error';
+import Products from './components/Products';
+import FeaturedProducts from './components/FeaturedProducts';
+import NewProducts from './components/NewProducts';
+import Users from './components/Users';
+import UserDetails from "./components/UserDetails";
+import Profile from "./components/Profile";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="order-summary" element={<OrderSummary />} />
+        <Route path="products" element={<Products />}>
+          <Route index element={<FeaturedProducts />} />
+          <Route path="featured" element={<FeaturedProducts />} />
+          <Route path="new" element={<NewProducts />} />
+        </Route>
+        <Route path="users" element={<Users />} />
+        <Route path="users/:id" element={<UserDetails />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="*" element={<Error />} />
+      </Routes>
+    </>
   );
 }
 
